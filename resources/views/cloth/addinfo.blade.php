@@ -194,7 +194,7 @@ $(document).on("change", "input.qty", function () {
 
 
 
-
+<!--PAYMENT-->
       </div>
     </div>
     @endsection

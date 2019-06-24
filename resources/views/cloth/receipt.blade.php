@@ -83,7 +83,7 @@
 
 							@php
 							$sum += $total;
-							$pcs += $row->exp; 
+							$pcs += $row->exp * $row->qty; 
 							@endphp
 						</tr>
 						@endforeach

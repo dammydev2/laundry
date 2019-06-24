@@ -132,6 +132,20 @@ Route::post('/printtag', 'HomeController@printtag');
 
 Route::get('/live_search2', 'HomeController@action2')->name('live_search2');
 
+Route::get('/color', 'HomeController@color');
+
+Route::get('/addcolor', 'HomeController@addcolor');
+
+Route::get('/editcolor/{id}', 'HomeController@editcolor');
+
+Route::get('/deletecolor/{id}', 'HomeController@deletecolor');
+
+Route::post('/entercolor', 'HomeController@entercolor');
+
+Route::post('/updatecolor', 'HomeController@updatecolor');
+
+Route::get('/selectcolor', 'HomeController@selectcolor');
+
 
 
 
