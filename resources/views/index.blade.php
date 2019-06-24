@@ -8,12 +8,11 @@
 <!DOCTYPE html>
 <html lang="zxx">
    <head>
-      <title>Clean & Dry Laundry a Flat Bootstrap Responsive Website Template  | Home :: w3layouts</title>
+      <title>Magson drycleaners </title>
       <!--meta tags -->
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="keywords" content="Clean & Dry Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-         Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+      <meta name="keywords" content="Magson, drycleaners" />
       <script>
          addEventListener("load", function () {
          	setTimeout(hideURLbar, 0);
@@ -44,7 +43,7 @@
          <div class="header-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
                <div class="hedder-up">
-                  <h1><a class="navbar-brand" href="#">Clean & Dry  <span >Fresh</span></a></h1>
+                  <h1><a class="navbar-brand" href="#">Magson<span >Drycleaners</span></a></h1>
                </div>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -84,7 +83,7 @@
                         <div class="container">
                            <div class="slider-info">
                               <h4>Best Place for Laundry & <br>Dry Cleaning</h4>
-                              <p>Quis autem vel eum iureautem</p>
+                              <p>A trial would convince you</p>
                               <div class="outs_more-buttn">
                                  <a href="#about" class="scroll">Learn More</a>
                               </div>
@@ -97,7 +96,7 @@
                         <div class="container">
                            <div class="slider-info">
                               <h4>Fresh Approach to Your<br>Daily Washing</h4>
-                              <p>Quis autem vel eum iureautem </p>
+                              <p>A trial would convince you </p>
                               <div class="outs_more-buttn">
                                  <a href="#about" class="scroll">Learn More</a>
                               </div>
@@ -110,10 +109,10 @@
             <div class="clearfix"> </div>
             <div class="banner_social">
                <ul class="its_social_list">
-                  <li><a href="#" class="le_facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a></li>
-                  <li><a href="#" class="le_twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
+                  <li><a href="https://twitter.com/magsondryclean" class="le_twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
+                  <!-- <li><a href="#" class="le_facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a></li>
                   <li><a href="#" class="le_dribble"><span class="fa fa-dribbble" aria-hidden="true"></span></a></li>
-                  <li><a href="#" class="le_vimeo"><span class="fa fa-vimeo" aria-hidden="true"></span></a></li>
+                  <li><a href="#" class="le_vimeo"><span class="fa fa-vimeo" aria-hidden="true"></span></a></li>-->
                </ul>
             </div>
          </div>
@@ -130,27 +129,29 @@
                <div class="agile-abt-info">
                   <h2>A Few Words About Us </h2>
                   <div class="info-sub-w3">
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-                        Aenean commodo ligula eget dolor. Aenean massa
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-                        Aenean commodo ligula eget dolor. Aenean massa
-                        adipiscing elit. 
-                        Aenean commodo ligula eget dolor. Aenean massa
+                     <p>Magson drycleaners provides professional Dry Cleaning & Laundry Services as well as ancillary services of 
+                        exceptional standards to domestic and commercial clients. Our value proposition is to ensure consistent Service 
+                        delivery in a convenient and affordable manner, providing the highest quality of Service and care possible. 
+                        Our ancillary services guarantee our clients access to a broad spectrum of specialist services delivered
+                        in a professional manner. We are proud of our enthusiastic and experienced team who are very experienced
+                        in all areas of Dry Cleaning ,Wet Cleaning, spotting, stain removal and pressing. We ensure that the 
+                        integrity of your cloth design or special detail is maintained in pursuit of meeting your specific 
+                        requirements.  
                      </p>
                   </div>
                </div>
                <div class="jst-must-info">
                   <div class="stats-info row">
                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stats-grid stats-grid-1">
-                        <div class="counter">3500</div>
+                        <div class="counter">1400</div>
                         <div class="stat-info">
                            <h4>Dry Cleaning</h4>
                         </div>
                      </div>
                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stats-grid stats-grid-2">
-                        <div class="counter">650</div>
+                        <div class="counter">150</div>
                         <div class="stat-info">
-                           <h4>Happy Client</h4>
+                           <h4>Happy Clients</h4>
                         </div>
                      </div>
                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stats-grid stats-grid-3">
@@ -160,9 +161,9 @@
                         </div>
                      </div>
                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stats-grid stats-grid-4">
-                        <div class="counter">1010</div>
+                        <div class="counter">12</div>
                         <div class="stat-info">
-                           <h4>Expert Worker</h4>
+                           <h4>Expert Workers</h4>
                         </div>
                      </div>
                   </div>
@@ -176,14 +177,14 @@
       <!-- services -->
       <div class="services" id="services">
          <div class="container">
-            <h3 class="title clr">We Offer Services</h3>
+            <h3 class="title clr">Services We Offer</h3>
             <div class="w3ls-services-grids">
                <div class="w3ls-services-left">
                   <div class=" row ser-close">
                      <div class="col-lg-4 col-md-5 col-sm-6 w3ls-services-left-top ">
                         <span class="ser-listed">1.</span>
                         <h5>Wash & Fold Laundry </h5>
-                        <p>Donec neque urna, tempor id est id, gravida molestie </p>
+                        <p>We Wash and iron your clothes to proper standard for your satisfaction.</p>
                      </div>
                      <div class="col-lg-4 col-md-4 col-sm-4 w3ls-services-middle-left img-upper">
                         <div class="services-left-img">
@@ -197,7 +198,7 @@
                      <div class="offset-lg-4 offset-md-3 offset-sm-2 col-lg-4 col-md-5 col-sm-6 w3ls-services-left-top ">
                         <span class="ser-listed">2.</span>
                         <h5>Soft Dry Cleaning</h5>
-                        <p>Donec neque urna, tempor id est id, gravida molestie </p>
+                        <p>We pay close attention to your fragile materials and handle with care. </p>
                      </div>
                      <div class="col-lg-4 col-md-4 col-sm-4 services-mid-img img-upper">
                         <div class="services-left-img">
@@ -211,7 +212,7 @@
                      <div class="col-lg-4 col-md-5 col-sm-6 w3ls-services-left-top">
                         <span class="ser-listed">3.</span>
                         <h5>Drop off Laundry</h5>
-                        <p>Donec neque urna, tempor id est id, gravida molestie</p>
+                        <p> We pick up your dirty laundry and after cleaning we deliver to your door step.</p>
                      </div>
                      <div class="col-lg-4 col-md-4 col-sm-4 w3ls-services-middle-right img-upper">
                         <div class="services-left-img">
@@ -245,6 +246,9 @@
                   <a href="#" title="Category 4">portfolio 4</a>
                </li>
             </ul>
+
+            <!--end Cent-area -->
+            <div class="cent-area">
             <ul class="portfolio-area">
                <li class="portfolio-item2" data-id="id-0" data-type="cat-item-1">
                   <div>
@@ -253,7 +257,7 @@
                            <figure>
                               <img src="images/g1.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -267,7 +271,7 @@
                            <figure>
                               <img src="images/g2.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -281,7 +285,7 @@
                            <figure>
                               <img src="images/g3.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -295,7 +299,7 @@
                            <figure>
                               <img src="images/g4.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -309,7 +313,7 @@
                            <figure>
                               <img src="images/g5.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -323,7 +327,7 @@
                            <figure>
                               <img src="images/g6.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -333,11 +337,11 @@
                <li class="portfolio-item2" data-id="id-6" data-type="cat-item-2">
                   <div>
                      <span class="image-block">
-                        <a class="image-zoom" href="images/g4.jpg" rel="prettyPhoto[gallery]">
+                        <a class="image-zoom" href="images/g7.jpg" rel="prettyPhoto[gallery]">
                            <figure>
-                              <img src="images/g4.jpg" class="img-responsive w3layouts agileits" alt="">
+                              <img src="images/g7.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -347,11 +351,11 @@
                <li class="portfolio-item2" data-id="id-7" data-type="cat-item-3">
                   <div>
                      <span class="image-block">
-                        <a class="image-zoom" href="images/g5.jpg" rel="prettyPhoto[gallery]">
+                        <a class="image-zoom" href="images/g2.jpg" rel="prettyPhoto[gallery]">
                            <figure>
-                              <img src="images/g5.jpg" class="img-responsive w3layouts agileits" alt="">
+                              <img src="images/g2.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -365,7 +369,7 @@
                            <figure>
                               <img src="images/g4.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -379,7 +383,7 @@
                            <figure>
                               <img src="images/g3.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -389,11 +393,11 @@
                <li class="portfolio-item2" data-id="id-10" data-type="cat-item-3">
                   <div>
                      <span class="image-block">
-                        <a class="image-zoom" href="images/g2.jpg" rel="prettyPhoto[gallery]">
+                        <a class="image-zoom" href="images/g5.jpg" rel="prettyPhoto[gallery]">
                            <figure>
-                              <img src="images/g2.jpg" class="img-responsive w3layouts agileits" alt="">
+                              <img src="images/g5.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -407,7 +411,7 @@
                            <figure>
                               <img src="images/g1.jpg" class="img-responsive w3layouts agileits" alt="">
                               <figcaption>
-                                 <h3>Clean & Dry</h3>
+                                 <h3>Magson drycleaners</h3>
                               </figcaption>
                            </figure>
                         </a>
@@ -416,6 +420,7 @@
                </li>
             </ul>
             <div class="clearfix"></div>
+            </div><!--end Cent-area -->
          </div>
       </div>
       <!--end portfolio-area -->
@@ -430,7 +435,7 @@
                         <img src="images/t1.jpg" alt="">
                         <ul class="text-center">
                            <li>
-                              <h4>Marrie Doi</h4>
+                              <h4>Moses koka</h4>
                            </li>
                            <li>
                               <h6>Dry Cleaning</h6>
@@ -444,7 +449,7 @@
                      <img src="images/t3.jpg" alt="">
                      <ul class="text-center">
                         <li>
-                           <h4>Max Will</h4>
+                           <h4>Max Amoche</h4>
                         </li>
                         <li>
                            <h6>Dry Cleaning</h6>
@@ -459,10 +464,10 @@
                      </div>
                      <ul class="text-center">
                         <li>
-                           <h4>Kent Kelly</h4>
+                           <h4>Isreal Ashimolowo</h4>
                         </li>
                         <li>
-                           <h6>Dry Cleaning</h6>
+                           <h6>Delivery Agent</h6>
                         </li>
                      </ul>
                   </div>
@@ -472,65 +477,7 @@
                      <img src="images/t5.jpg" alt="">
                      <ul class="text-center">
                         <li>
-                           <h4>Sunny Doi</h4>
-                        </li>
-                        <li>
-                           <h6>Dry Cleaning</h6>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="row pt-md">
-               <div class="col-lg-3 col-md-6 col-sm-6 profile">
-                  <div class="bodr-img">
-                     <div class="img-box">
-                        <img src="images/t6.jpg" alt="">
-                        <ul class="text-center">
-                           <li>
-                              <h4>Rox Will</h4>
-                           </li>
-                           <li>
-                              <h6>Dry Cleaning</h6>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-md-6 col-sm-6 profile">
-                  <div class="img-box">
-                     <img src="images/t5.jpg" alt="">
-                     <ul class="text-center">
-                        <li>
-                           <h4>Sam Doi</h4>
-                        </li>
-                        <li>
-                           <h6>Dry Cleaning</h6>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-md-6 col-sm-6 profile">
-                  <div class="img-box">
-                     <div class="team-list-img">
-                        <img src="images/t2.jpg" alt="">
-                     </div>
-                     <ul class="text-center">
-                        <li>
-                           <h4>Kent Kelly</h4>
-                        </li>
-                        <li>
-                           <h6>Dry Cleaning</h6>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-md-6 col-sm-6 profile">
-                  <div class="img-box">
-                     <img src="images/t1.jpg" alt="">
-                     <ul class="text-center">
-                        <li>
-                           <h4>Rose Will</h4>
+                           <h4>Sunny Yakubu</h4>
                         </li>
                         <li>
                            <h6>Dry Cleaning</h6>
@@ -767,16 +714,16 @@
                <div class="row top-gap">
                   <div class="col-md-7 header-side">
                      <p> 
-                        © {{ date('Y') }} Clean & Dry. All Rights Reserved | Design by <a href="http://www.softsolver.com.ng" target="_blank">Softsolver</a>
+                        © {{ date('Y') }} Magson drycleaners. All Rights Reserved <!-- | Design by <a href="http://www.softsolver.com.ng" target="_blank">Softsolver</a>-->
                      </p>
                   </div>
                   <div class="col-md-5 header-side">
                      <div class="buttom-social-grids">
                         <ul>
-                           <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                           <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                           <li><a href="https://twitter.com/magsondryclean"><span class="fa fa-twitter"></span></a></li>
+                           <!--<li><a href="#"><span class="fa fa-facebook"></span></a></li>
                            <li><a href="#"><span class="fa fa-rss"></span></a></li>
-                           <li><a href="#"><span class="fa fa-vk"></span></a></li>
+                           <li><a href="#"><span class="fa fa-vk"></span></a></li>-->
                         </ul>
                      </div>
                   </div>

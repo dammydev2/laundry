@@ -105,6 +105,7 @@ ul {
 /*-- nav --*/
 .header-bar {
     padding: 0em 4em;
+    background-color: rgba(0, 0, 0, 0.5)
 }
 h1 a.navbar-brand {
     padding-top: 6px;
@@ -898,7 +899,7 @@ h6.description{
 /*--contact --*/
 .agileits-contact-addrs h4 {
     display: inline-block;
-    color: #03ff0e;
+    color: #ffffff;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 600;
@@ -964,7 +965,7 @@ h6.description{
     resize: none;
 }
 .click{
-    text-align: right;
+    text-align: Center;
     margin: 22px 0px 0px;
 }
 .contact input[type="submit"] {
@@ -1910,3 +1911,6 @@ li.cat-item-2 ,li.cat-item-3 {
 
 /*--//responsive--*/
 
+.cent-area{
+    margin:auto;
+}
