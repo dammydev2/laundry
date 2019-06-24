@@ -1,5 +1,7 @@
 <li><a href="{{ url('/category') }}">Category</a></li>
 
+<li><a href="{{ url('/color') }}">Color</a></li>
+
 <li><a href="{{ url('/services') }}">Additional Service(s)</a></li>
 
 <li><a href="{{ url('/customer') }}">Customer</a></li>

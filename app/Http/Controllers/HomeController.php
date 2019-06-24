@@ -12,6 +12,7 @@ use App\Stock;
 use App\User;
 use App\Service;
 use App\AddService;
+use App\Color;
 
 class HomeController extends Controller
 {
@@ -645,7 +646,13 @@ public function aditionalservice(Request $request)
     ->update([
         'addamount' => $sum
     ]);
-    return redirect('payment');
+    return redirect('selectcolor');
+}
+
+public function selectcolor()
+{
+    $data = Color::all();
+    return view('cloth.selectcolor', compact('data'));
 }
 
 public function tag()
@@ -674,7 +681,54 @@ public function tagprint()
     return view('cloth.tagprint', compact('data'));
 }
 
+public function color()
+{
+    $data = Color::all();
+    return view('cloth.color', compact('data'));
+}
 
+public function addcolor()
+{
+    return view('cloth.addcolor');
+}
+
+public function entercolor(Request $request)
+{
+    $request->validate([
+        'color' => 'required|unique:colors',
+    ]);
+    Color::create([
+        'color' => $request['color'],
+    ]);
+    Session::flash('success', 'color added successfully');
+    return redirect('color');
+}
+
+public function editcolor($id)
+{
+    $data = Color::where('id', $id)->get();
+    return view('cloth.editcolor', compact('data'));
+}
+
+public function updatecolor(Request $request)
+{
+    $request->validate([
+        'color' => 'required|unique:colors',
+    ]);
+    Color::where('id', $request['id'])
+    ->update([
+        'color' => $request['color'],
+    ]);
+    Session::flash('success', 'color update successfully');
+    return redirect('color');
+}
+
+public function deletecolor($id)
+{
+    Color::where('id', $id)->delete();
+    Session::flash('error', 'deleted successfully');
+    return redirect('color');
+}
 
 
 
