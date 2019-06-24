@@ -13,6 +13,7 @@ use App\User;
 use App\Service;
 use App\AddService;
 use App\Color;
+use App\AddColor;
 
 class HomeController extends Controller
 {
@@ -651,8 +652,10 @@ public function aditionalservice(Request $request)
 
 public function selectcolor()
 {
+    $tag = Session::get('tag');
     $data = Color::all();
-    return view('cloth.selectcolor', compact('data'));
+    $data2 = Stock::where('tag', $tag)->get();
+    return view('cloth.selectcolor', compact('data','data2'));
 }
 
 public function tag()
@@ -728,6 +731,20 @@ public function deletecolor($id)
     Color::where('id', $id)->delete();
     Session::flash('error', 'deleted successfully');
     return redirect('color');
+}
+
+public function inputcolor(Request $request)
+{
+    AddColor::create([
+        'tag' => Session::get('tag'),
+        'category'=> $request['category'],
+        'color'=> $request['color'],
+        'qty'=> $request['qty'],
+    ]);
+    $tag = Session::get('tag');
+    $data = AddColor::select('category')->distinct()->get();
+    dd($data);
+    return redirect('payment');
 }
 
 

@@ -144,6 +144,8 @@ Route::post('/entercolor', 'HomeController@entercolor');
 
 Route::post('/updatecolor', 'HomeController@updatecolor');
 
+Route::post('/inputcolor', 'HomeController@inputcolor');
+
 Route::get('/selectcolor', 'HomeController@selectcolor');
 
 
