@@ -127,7 +127,7 @@
          <div class="container">
             <div class="abt-colm text-center">
                <div class="agile-abt-info">
-                  <h2>A Few Words About Us </h2>
+                  <h2>About Us </h2>
                   <div class="info-sub-w3">
                      <p>Magson drycleaners provides professional Dry Cleaning & Laundry Services as well as ancillary services of 
                         exceptional standards to domestic and commercial clients. Our value proposition is to ensure consistent Service 
