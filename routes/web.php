@@ -28,6 +28,8 @@ Route::get('/category', 'HomeController@category');
 
 Route::get('/editcategory/{id}', 'HomeController@editcategory');
 
+Route::get('/collected/{id}', 'HomeController@collected');
+
 Route::get('/deletecategory/{id}', 'HomeController@deletecategory');
 
 Route::get('/customeredit/{id}', 'HomeController@customeredit');
@@ -84,7 +86,7 @@ Route::get('/returnstock', 'HomeController@returnstock');
 
 Route::get('/chkreturn', 'HomeController@chkreturn');
 
-Route::get('/confirmbalance', 'HomeController@confirmbalance');
+Route::post('/confirmbalance', 'HomeController@confirmbalance');
 
 Route::get('/printreturn', 'HomeController@printreturn');
 
@@ -147,6 +149,20 @@ Route::post('/updatecolor', 'HomeController@updatecolor');
 Route::post('/inputcolor', 'HomeController@inputcolor');
 
 Route::get('/selectcolor', 'HomeController@selectcolor');
+
+Route::get('/ironer', 'HomeController@ironer');
+
+Route::post('/ironertag', 'HomeController@ironertag');
+
+Route::post('/inputironer', 'HomeController@inputironer');
+
+Route::get('/addironer', 'HomeController@addironer');
+
+Route::get('/chkironer', 'HomeController@chkironer');
+
+Route::get('/viewironer', 'HomeController@viewironer');
+
+Route::post('/searchironer', 'HomeController@searchironer');
 
 
 

@@ -14,6 +14,8 @@ use App\Service;
 use App\AddService;
 use App\Color;
 use App\AddColor;
+use App\Payment;
+use App\Ironer;
 
 class HomeController extends Controller
 {
@@ -51,7 +53,7 @@ class HomeController extends Controller
     public function entercategory(Request $request)
     {
         $request->validate([
-            'category' => 'required|unique:Categories',
+            'category' => 'required|unique:categories',
             'amount' => 'required',
             'qty' => 'required',
         ]);
@@ -118,7 +120,7 @@ class HomeController extends Controller
             'email' => $request['email'],
             'address' => $request['address'],
             'phone' => $request['phone'],
-            'cus_id' => $random,
+            'cus_id' => 'MAG'.$random,
         ]);
         Session::flash('success', 'Customer created successfully');
         return redirect('customer');
@@ -157,14 +159,14 @@ class HomeController extends Controller
 
     public function stock()
     {
-        $data = Stock::select('tag')->distinct()->get();
+        $data = Stock::select('tag')->orderBy('id', 'desc')->distinct();
         //dd($data);
         return view('cloth.stock', compact('data'));
     }
 
     public function addstock()
     {
-        $data = Customer::all();
+        $data = Customer::orderBy('name', 'asc')->get();
         return view('cloth.addstock', compact('data'));
     }
 
@@ -187,7 +189,9 @@ class HomeController extends Controller
         $code = Session::get('code');
         //$data = Customer::where('cus_id', $code)->get();
         $data = Category::all();
-        return view('cloth.enterstock', compact('data'));
+        $data2 = Stock::orderBy('id', 'desc')->first();
+        $data3 = Color::orderBy('color', 'asc')->get();
+        return view('cloth.enterstock', compact('data','data2','data3'));
     }
 
     public function action(Request $request)
@@ -253,18 +257,40 @@ public function stockenter(Request $request)
     foreach ($data as $row) {
         $name = $row->name;
     }
+    Session::put('name', $name);
     $num = count($_POST['qty']);
     for ($i=0; $i < $num; $i++) { 
+        //checking if its iron only
+        if ($request['tp'][$i] == 'Iron') {
+            $price[] = $request['price'][$i] / 2;
+        }
+        else{
+            $price[] = $request['price'][$i];
+        }
+        print_r($price[$i]);
         Stock::create([
             'name' => $name,
             'cus_id' => $code,
             'tag' => $request['tag'],
             'category' => $request['category'][$i],
             'qty' => $request['qty'][$i],
-            'price' => $request['price'][$i],
+            'price' => $price[$i],
             'info' => $request['info'][$i],
             'exp' => $request['exp'][$i],
             'fold' => $request['fold'][$i],
+            'servicetype' => $request['tp'][$i],
+            'location' => \Auth::User()->location,
+            'totalCloth' => $request['tcolth']
+        ]);
+    }
+    //entering into color
+    $num = count($request['color']);
+    for ($i=0; $i < $num; $i++) { 
+        AddColor::create([
+            'tag' => $request['tag'],
+            'color' => $request['color'][$i],
+            'qty' => $request['color_qty'][$i],
+            'category' => $request['cloth'][$i],
         ]);
     }
     Session::put('tag', $request['tag']);
@@ -274,12 +300,15 @@ public function stockenter(Request $request)
 
 public function addinfo()
 {
-    return view('cloth.addinfo');
+    $tag = Session::get('tag');
+    $data = Service::all();
+    $data2 = AddColor::where('tag', $tag)->get();
+    return view('cloth.addinfo', compact('data','data2'));
 }
 
 public function payment()
 {
-    //$tag = Session::put('tag', 59661856);
+    //$tag = Session::put('tag', 10436);
     $tag = Session::get('tag');
     $data = Stock::where('tag', $tag)->get();
     return view('cloth.payment', compact('data'));
@@ -298,13 +327,22 @@ public function addpayment(Request $request)
         'deposit' => $request['deposit'],
         'balance' => $request['balance'],
         'discount' => $request['discount'],
+        'hanger' => $request['hanger'],
+        'express' => $request['express']
+    ]);
+    Payment::create([
+        'tag' => Session::get('tag'),
+        'name' => Session::get('name'),
+        'amount' => $request['deposit'],
+        'balance' => $request['balance'],
+        'type' => 'Deposit',
+        'method' => $request['type']
     ]);
     return redirect('receipt');
 }
 
 public function receipt()
 {
-    //$tag = Session::put('tag', 7572792);
     $tag = Session::get('tag');
     $data = Stock::where('tag', $tag)->get();
     //GETTING THE CUSTOMER INFORMATION
@@ -312,7 +350,9 @@ public function receipt()
         $cus_id = $row->cus_id;
     }
     $data2 = Customer::where('cus_id', $cus_id)->get();
-    return view('cloth.receipt', compact('data','data2'));
+    $data3 = AddColor::where('tag', $tag)->get();
+    $data4 = AddService::where('tag', $tag)->get();
+    return view('cloth.receipt', compact('data','data2','data3','data4'));
 }
 
 public function breakdown($id)
@@ -323,7 +363,8 @@ public function breakdown($id)
 
 public function returnstock()
 {
-    return view('cloth.returnstock');
+    $data = Payment::orderBy('name', 'asc')->get();
+    return view('cloth.returnstock', compact('data'));
 }
 
 public function searchtag(Request $request)
@@ -353,10 +394,13 @@ public function chkreturn()
     }
     $data2 = Customer::where('cus_id', $cus_id)->get();
     $data = Stock::where('tag', $tag)->get();
-    return view('cloth.chkreturn', compact('data','data2'));
+    $data3 = AddColor::where('tag', $tag)->get();
+    $data4 = AddService::where('tag', $tag)->get();
+    $getTag = Payment::where('tag', $tag)->first();
+    return view('cloth.chkreturn', compact('data','data2','data3','data4','getTag'));
 }
 
-public function confirmbalance()
+public function confirmbalance(Request $request)
 {
     $tag = Session::get('tag');
     $dt = date('Y-m-d');
@@ -365,6 +409,21 @@ public function confirmbalance()
         'balance_paid' => $dt,
         'status' => 1,
     ]);
+    Payment::create([
+        'tag' => Session::get('tag'),
+        'name' => $request['name'],
+        'amount' => $request['amount'],
+        'balance' => 0,
+        'name' => $request['name'],
+        'type' => 'balance',
+        'method' => $request['method'],
+        'collect' => 1
+    ]);
+    Payment::where('tag', Session::get('tag'))
+    ->update([
+        'collect' => 1
+    ]);
+           // return redirect('chkreturn');
     return redirect('printreturn');
 }
 
@@ -429,7 +488,7 @@ public function allincome()
 {
     $start = Session::get('start');
     $end = Session::get('end');
-    $data = Stock::where('created_at', '>=', $start)
+    $data = Payment::where('created_at', '>=', $start)
     ->where('created_at', '<=', $end)->get();
     return view('cloth.allincome', compact('data'));
 }
@@ -483,7 +542,8 @@ public function registerworker(Request $request)
     User::create([
         'name' => $request['name'],
         'email' => $request['email'],
-        'type' => 1,
+        'location' => $request['location'],
+        'type' => $request['type'],
         'password' => Hash::make($request['password']),
     ]);
     Session::flash('success', 'worker added successfully');
@@ -522,7 +582,7 @@ public function deleteworker($id)
 
 public function service()
 {
-        $data = Service::all();
+    $data = Service::orderBy('service','asc')->get();
     return view('cloth.service', compact('data'));
 }
 
@@ -574,14 +634,14 @@ public function deleteservice($id)
 }
 
 public function action2(Request $request)
+{
+   if($request->ajax())
+   {
+    $output = '';
+    $query = $request->get('query');
+    if($query != '')
     {
-       if($request->ajax())
-       {
-        $output = '';
-        $query = $request->get('query');
-        if($query != '')
-        {
-            $data = Service::where('service', 'like', '%'.$query.'%')
+        $data = Service::where('service', 'like', '%'.$query.'%')
           # ->orWhere('name', 'like', '%'.$query.'%')
         /** ->orWhere('City', 'like', '%'.$query.'%')
          ->orWhere('PostalCode', 'like', '%'.$query.'%')
@@ -634,20 +694,36 @@ public function aditionalservice(Request $request)
         AddService::create([
             'service' => $request['service'][$i],
             'qty' => $request['qty'][$i],
-            'tag' => $request['tag'],
-            'price' => $request['price'][$i],
+            'tag' => Session::get('tag'),
+            'category' => $request['category'][$i],
         ]); 
     }
-    $data = AddService::where('tag', $request['tag'])->get();
+
+    //updating the price
+    $data = AddService::where('tag', Session::get('tag'))->get();
+    foreach ($data as $row) {
+        $service = $row->service;
+        $data2 = Service::where('service', $service)->get();
+        foreach ($data2 as $get) {
+            $price = $get->price;
+            AddService::where('service', $service)
+            ->update([
+                'price' => $price,
+            ]);
+        }
+
+    }
+    $data = AddService::where('tag', Session::get('tag'))->get();
     $sum = 0;
     foreach ($data as $row) {
         $sum += $row->price * $row->qty;
     }
-    Stock::where('tag', $request['tag'])
+   // dd($sum);
+    Stock::where('tag', Session::get('tag'))
     ->update([
         'addamount' => $sum
     ]);
-    return redirect('selectcolor');
+    return redirect('payment');
 }
 
 public function selectcolor()
@@ -680,7 +756,7 @@ public function tagprint()
 {
     $tag = Session::get('tag');
     $data = Stock::where('tag', $tag)->get();
-    //dd($tag);
+    //dd($data);
     return view('cloth.tagprint', compact('data'));
 }
 
@@ -735,18 +811,98 @@ public function deletecolor($id)
 
 public function inputcolor(Request $request)
 {
-    AddColor::create([
-        'tag' => Session::get('tag'),
-        'category'=> $request['category'],
-        'color'=> $request['color'],
-        'qty'=> $request['qty'],
-    ]);
-    $tag = Session::get('tag');
-    $data = AddColor::select('category')->distinct()->get();
-    dd($data);
+    $num = count($request['category']);
+    for ($i=0; $i < $num; $i++) { 
+        AddColor::create([
+            'tag' => Session::get('tag'),
+            'category'=> $request['category'][$i],
+            'service'=> $request['service'][$i],
+            'qty'=> $request['qty'][$i],
+        ]);
+    }
     return redirect('payment');
 }
 
+public function ironer()
+{
+    return view('cloth.ironer');
+}
+
+public function ironertag(Request $request)
+{
+    $request->validate([
+        'tag' => 'required'
+    ]);
+    $data = Stock::where('tag', $request['tag'])
+    ->where('status', 0)->get();
+    if ($data->isEmpty()) {
+        Session::flash('error', 'no record found');
+        return redirect('ironer');
+    }
+    Session::put('tag', $request['tag']);
+    return redirect('addironer');
+}
+
+public function addironer()
+{
+    $tag = Session::get('tag');
+    $data = Stock::where('tag', $tag)->get();
+    //dd($tag);
+    return view('cloth.addironer', compact('data'));
+}
+
+public function inputironer(Request $request)
+{
+    //dd($request);
+    $num = count($request['ironer']);
+    for ($i=0; $i < $num; $i++) { 
+        Ironer::create([
+            'tag' => $request['tag'],
+            'tagno' => $request['tagno'][$i],
+            'ironer' => $request['ironer'][$i],
+        ]);
+    }
+    Session::flash('success', 'ironer added');
+    return redirect('ironer');
+}
+
+public function chkironer()
+{
+    return view('cloth.chkironer');
+}
+
+public function searchironer(Request $request)
+{
+    $request->validate([
+        'tag' => 'required'
+    ]);
+    $data = Ironer::where('tag', $request['tag'])->get();
+    if ($data->isEmpty()) {
+        Session::flash('error', 'no record found');
+        return redirect('chkironer');
+    }
+    Session::put('tag', $request['tag']);
+    return redirect('viewironer');
+}
+
+public function viewironer()
+{
+    $tag = Session::get('tag');
+    $data = Ironer::where('tag', $tag)->get();
+    //dd($tag);
+    return view('cloth.viewironer', compact('data'));
+}
+
+public function collected($tag)
+{
+    Payment::where('tag', $tag)
+    ->update([
+        'collect' => 1
+    ]);
+    Session::flash('success', 'mark as collected');
+           // return redirect('chkreturn');
+    return redirect('chkreturn');
+}
 
 
 

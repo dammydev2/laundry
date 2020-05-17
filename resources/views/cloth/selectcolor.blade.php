@@ -12,20 +12,23 @@
 		<div class="alert alert-danger">{{ Session::get('error') }}</div>
 		@endif
 
-		<div class="col-sm-5">
+		<div class="col-sm-5 panel panel-primary">
+			<div class="panel-heading">Add color of clothes brought</div>
+			<div class="panel-body">
 
-			<button id="Add">Click to add textbox</button> <button id="Remove">Click to remove textbox</button> 
+				<button id="Add" class="btn btn-success">Click to add</button> <button id="Remove" class="btn btn-danger">Click to remove</button> 
+				<p>&nbsp;</p>
 
-			<form method="post" action="inputcolor"> 
+				<form method="post" action="inputcolor"> 
 
-				{{ csrf_field() }}
+					{{ csrf_field() }}
 
-				<div id="textboxDiv"></div> 
+					<div id="textboxDiv"></div> 
 
-				<input type="submit" class="btn btn-primary" name="">
+					<input type="submit" class="btn btn-primary" name="">
 
-			</form>
-
+				</form>
+			</div>
 		</div>
 
 	</div>

@@ -1,0 +1,1 @@
+{{ '['. $gt->qty .']'. $gt->category .' '. $gt->color. ',' }}

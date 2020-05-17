@@ -34,25 +34,33 @@
 					<th colspan="7"><center>All income generated from: {{ $strip }} to {{ $strip2 }}</center></th>
 				</tr>
 				<tr>
-					<th>Customer ID</th>
-					<th>Name</th>
 					<th>Tag</th>
+					<th>Name</th>
 					<th>amount paid</th>
+					<th>balance</th>
+					<th>Payment method</th>
+					<th>Payment type</th>
 				</tr>
 				
-				<?php $sum = 0; ?>
+				<?php $sum = 0; $inc = ''; ?>
 				@foreach($data as $row)
 				<tr>
 					<td>{{ $row->cus_id }}</td>
 					<td>{{ $row->name }}</td>
-					<td>{{ $row->tag }}</td>
-					<td class="text-right">{{ $row->deposit }}</td>
+					<td class="text-right">{{ $row->amount }}</td>
+					<td>{{ $row->balance }}</td>
+					<td>{{ $row->method }}</td>
+					<td>
+						@if($row->type == 'Deposit')
+						 initial
+						@endif
+						{{ $row->type }}</td>
 				</tr>
-				<?php $sum += $row->deposit ?>
+				<?php $sum += $row->amount ?>
 				@endforeach
 
 				<tr>
-					<td colspan="3" class="text-right">Grand Total</td>
+					<td colspan="2" class="text-right">Grand Total</td>
 					<th class="text-right">{{ number_format($sum, 2) }}</th>
 				</tr>
 

@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
 <div class="container">
 	<div class="row">
 
@@ -32,7 +38,13 @@
 
 					<div class="form-group">
 						<label>Tag <i class="fa fa-tag"></i></label>
-						<input type="text" name="tag" class="form-control">
+						<select class="form-control js-example-basic-single" name="tag">
+						    <option value="">Search using customer name or tag</option>
+						    @foreach($data as $row)
+						    <option value="{{ $row->tag }}">{{ $row->name. ' ('.$row->created_at.')' }}</option>
+						    @endforeach
+						</select>
+						<!--input type="text" name="tag" class="form-control">-->
 					</div>
 
 					<input type="submit" name="submit" value="search Tag" class="btn btn-primary">
@@ -45,4 +57,11 @@
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	// In your Javascript (external .js resource or <script> tag)
+	$(document).ready(function() {
+		$('.js-example-basic-single').select2();
+	});
+</script>
 @endsection

@@ -22,7 +22,10 @@ class CreateStocksTable extends Migration
             $table->string('qty');
             $table->string('exp');
             $table->string('fold');
+            $table->string('tag');
             $table->string('price');
+            $table->string('location');
+            $table->string('servicetype');
             $table->string('info')->nullable();
             $table->string('addamount')->nullable();
             $table->string('collect_date')->nullable();
@@ -31,6 +34,7 @@ class CreateStocksTable extends Migration
             $table->string('deposit')->nullable();
             $table->string('balance_paid')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('express')->default(1);
             $table->timestamps();
         });
     }

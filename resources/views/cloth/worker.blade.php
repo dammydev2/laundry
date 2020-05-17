@@ -20,6 +20,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Email</th>
+					<th>Location</th>
+					<th>Worker Type</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -27,6 +29,20 @@
 				<tr>
 					<th>{{ $row->name }}</th>
 					<th>{{ $row->email }}</th>
+					<th>{{ $row->location }}</th>
+					<th>
+
+						@if($row->type == 1)
+
+							Front Desk
+
+						@elseif($row->type == 2)
+
+						Ironer
+
+						@endif
+
+					</th>
 					<th><a href="{{ url('editworker/'.$row->id) }}">Edit</a></th>
 					
 @if($row->type != 0)

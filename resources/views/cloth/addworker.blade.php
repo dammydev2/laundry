@@ -77,6 +77,22 @@
 							@endif
 						</div>
 
+						<div class="form-group">
+							<label>location</label>
+							<select class="form-control" name="location">
+								<option>Ikeja</option>
+								<option>Ikorodu</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Worker Type</label>
+							<select class="form-control" name="type">
+								<option value="1">Front Desk</option>
+								<option value="2">Ironer</option>
+							</select>
+						</div>
+
 						<div class="row">
 							<!-- /.col -->
 							<div class="col-xs-4">

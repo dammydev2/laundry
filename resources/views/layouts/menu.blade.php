@@ -1,3 +1,9 @@
+@if(\Auth::User()->type == 0 OR \Auth::User()->type == 1)
+
+<li><a href="{{ url('/stock') }}">Stock</a></li>
+
+<li><a href="{{ url('/returnstock') }}">Customer clothes drop</a></li>
+
 <li><a href="{{ url('/category') }}">Category</a></li>
 
 <li><a href="{{ url('/color') }}">Color</a></li>
@@ -6,11 +12,9 @@
 
 <li><a href="{{ url('/customer') }}">Customer</a></li>
 
-<li><a href="{{ url('/stock') }}">Stock</a></li>
-
-<li><a href="{{ url('/returnstock') }}">Return Stock</a></li>
-
 <li><a href="{{ url('/tag') }}">Print Tag</a></li>
+
+<li><a href="{{ url('/chkironer') }}">Ironer</a></li>
 
 @if(\Auth::User()->type == 0)
 <li><a href="{{ url('/worker') }}">worker</a></li>
@@ -27,6 +31,13 @@
   </div>
 </div>
 </li>
+@endif
+
+@if(\Auth::User()->type == 2)
+<li><a href="{{ url('/ironer') }}">add Ironer</a></li>
+@endif
+
+
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */

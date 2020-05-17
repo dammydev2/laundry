@@ -9,24 +9,67 @@
 		<?php $sum = 0 ?>
 
 		@foreach($data as $row)
-
-		<?php $sum += $row->exp;  ?>
+		<?php $sum += $row->exp * $row->qty;  ?>
 		@endforeach
 
-		
-		@for ($i=1; $i <= $sum; $i++) 
+		@php
 
-		<div style="border: 1px solid #000; width: 100px">
-			{{ $i }} of {{$sum}}<br>
-			<b>{{ $row->tag }}</b><br>
-			{{ $row->collect_date }}
+		$dt = strtotime($row->created_at);
+
+		@endphp
+		
+			<?php
+		 $whole_elements = $sum;
+
+$third = ceil($whole_elements / 2);
+$group1 =$third;
+$group2 = $whole_elements - 1*$third;
+//echo 'one: ' . $group1 . '<br/>two: ' . $group2; 
+?>
+
+<table>
+    <tr>
+        <td>
+            @for ($i=1; $i <= $group1; $i++) 
+
+		<div style=" width: 120px; font-size: 12px;">
+			<span>{{ $i }} of {{$sum}}</span> <span style="float: right;">{{ date('d-m-Y', $dt) }}</span><br>
+			<center><b>{{ $row->tag }}</b><br></center>
+			<span class="text-center">{{ $row->collect_date }}</span>
 		</div>
-			
-			
-
+		<p>&nbsp;</p>
 			@endfor
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>
+            @for ($i=$group1 + 1; $i <= $group2 + $group1; $i++) 
+
+		<div style=" width: 120px; font-size: 12px;">
+			<span>{{ $i }} of {{$sum}}</span> <span style="float: right;">{{ date('d-m-Y', $dt) }}</span><br>
+			<center><b>{{ $row->tag }}</b><br></center>
+			<span class="text-center">{{ $row->collect_date }}</span>
+		</div>
+		<p>&nbsp;</p>
+			@endfor
+        
+        <?php
+        if ($group2 % 2 === 0) {
+   echo "<p>&nbsp;</p>";
+   echo "<p>&nbsp</p>";
+   echo "<p>&nbsp</p>";
+} else {
+   echo "<p>&nbsp;</p>";
+   echo "<p>&nbsp</p>";
+   echo "<p>&nbsp</p>";
+}
+        ?>
+        </td>
+    </tr>
+</table>
 		
-		 
+	
+		
+	
 
 	</div>
 </div>

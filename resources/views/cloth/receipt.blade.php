@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-	<div class="row">
-
+	<!--<div class="row">-->
+		
 		@if(Session::has('success'))
 		<div class="alert alert-success">{{ Session::get('success') }}</div>
 		@endif
@@ -12,9 +12,7 @@
 		<div class="alert alert-danger">{{ Session::get('error') }}</div>
 		@endif
 
-		<div class="panel panel-primary">
-			<div class="panel-heading" id="printPageButton">Payment</div>
-			<div class="panel-body">
+		
 
 				@if ($errors->any())
 				<div class="alert alert-danger">
@@ -28,111 +26,156 @@
 				
 				<button id="printPageButton" onClick="window.print();">Print</button>
 
-				<div style="border: 1px solid #000" style="width: 900px">
+				<div style=" width: 250px; font-size: 12px">
 					<center>
-						<h3>THE LAUNDRY</h3>
-						<P>CUSTOMER RECEIPT</P>
-						<p>Address: 89 Adeniyi Jones, Ikeja, Lagos<br>
-							<i class="fa fa-phone"> (+234) 803 787 0671</i>
+						<h5 style="margin-top: -1px;"><b>Magson Dry-cleaners</b></h5>
+						<P style="margin-top: -10px;">
+						 89 Adeniyi Jones, Ikeja, Lagos. 08037870671<br>
+							<!--<i class="fa fa-phone"><b> (+234) 803 787 0671</b></i>-->
+							
+						@foreach($data as $row)
+						@endforeach
+						Customer id: {{ $row->cus_id }}
+					
 						</p>
 					</center>
 
-					<div class="container">
+					<!--<center style="margin-top: -10px;">
+						@foreach($data as $row)
+						@endforeach
+						Customer id: {{ $row->cus_id }}
+					</center>-->
+
+					<div class="container" style="margin-top:-10px;">
 						Date: {{ date('d/m/Y') }}
-						<span  style="margin-left: 300px;">Tag no:</span><b><i> {{ Session::get('tag') }} </i></b>
+						<span  style="margin-left: 20px;">Tag no:</span><b><i> {{ Session::get('tag') }} </i></b>
 
 					</div>
 
-					<p>&nbsp;</p>
-
-					<table class="table">
+					<hr>
+					<table style="margin-top: -40px;">
 						@foreach($data2 as $row)
 						<tr>
-							<td>Customer Name: <b>{{ $row->name }}</b></td>
-							<td>Phone: <b>{{ $row->phone }}</b></td>
-						</tr>
-						<tr>
-							<td colspan="2">Address: {{ $row->address }}</td>
+							<td><b>{{ $row->name }}</b></td>
 						</tr>
 						@endforeach
 					</table>
 
-					<table class="table table-bordered">
+					<table style="width: 100%; font-size:11px;">
 						<tr>
-							<th>Qty</th>
-							<th>Category</th>
-							<th>Price</th>
-							<th>Amount</th>
-							<th>Other Info</th>
+							<th style="padding: 5px;"></th>
+							<th colspan='3' style="padding: 5px;">Item</th>
+							<th style="width: 40px;" style="padding: 5px;">Price</th>
+							<!--<th>Amount</th>-->
+							<!--<th>Other Info</th>-->
 							<th>Sub Total</th>
 						</tr>
 
 						@php
 						$sum = 0;
 						$pcs = 0;
+						$foldamount = 0;
 						@endphp
 
 						@foreach($data as $row)
-						<tr>
-							<td> {{ $row->qty }} </td>
-							<td> {{ $row->category }} </td>
+						<?php 
+						if($row->fold == 'Fold'){
+						
+						$addfold = 100 * $row->qty;
+						
+						$foldamount += $addfold;
+					}
+						 ?>
+						<tr  style="vertical-align:top">
+							<td class="text-bold">{{ $row->qty }} </td>
+							<td colspan='3'> {{ $row->category }}
+							
+								@foreach($data3 as $gt)
+
+								@if($row->category == $gt->category)
+								{{ '['. $gt->qty.']' .$gt->color }}
+
+								@endif
+
+								@foreach($data4 as $gt2)
+
+								@if($gt2->category == $row->category.' ('.$gt->color.')' )
+
+								({{ $gt2->qty.' '.$gt2->service }} )
+
+								@endif
+
+								@endforeach
+
+								@endforeach
+
+								{{ "... (".($row->fold).")" }} {{ $row->servicetype }} 
+							
+							<p>&nbsp;</p>
+							</td>
 							<td> {{ $row->price }} </td>
-							<td> {{ $sub = $row->price * $row->qty }} </td>
-							<td> {{ $row->info ." (".($row->fold).")" }} </td>
-							<td class="text-right">{{ number_format($total = $sub, 2) }}</td>
+							<!--<td> {{ $sub = $row->price * $row->qty * $row->express }} </td>-->
+							<!--<td> 
+							</td>-->
+								<td class="text-right">{{ number_format($total = $sub, 2) }}</td>
 
-							@php
-							$sum += $total;
-							$pcs += $row->exp * $row->qty; 
-							@endphp
-						</tr>
-						@endforeach
+								@php
+								$sum += $total;
+								$pcs += $row->exp * $row->qty; 
+								@endphp
+							</tr>
+							@endforeach
 
-						<tr>
-							<th><b>{{ $pcs }}</b>  Pieces of cloth</th>
-							<th colspan="4" class="text-right">Sub Total</th>
-							<td class="text-right"><b>&#8358; {{ number_format($sum, 2) }}</b></td>
-						</tr>
+							<tr>
+								<th colspan='3'><b>{{ $row->totalCloth }}</b>  Piece(s) of cloth</th>
+								<th colspan="2" class="text-right">Sub Total &nbsp;</th>
+								<td class="text-right"><b>&#8358; {{ number_format($sum, 2) }}</b></td>
+							</tr>
 
-						<tr>
-							<th colspan="5" class="text-right">Other Services</th>
-							<td class="text-right">&#8358; {{ number_format($row->addamount, 2) }}</td>
-						</tr>
+							<?php
+							$others = $foldamount + $row->addamount;
+							?>
+							<!--<tr>
+								<td colspan="3" rowspan="3"></td>
+								<th colspan="2" class="text-right">Other Services &nbsp;</th>
+								<td class="text-right"> {{ number_format($others, 2) }}</td>
+							</tr>-->
 
-						<tr>
-							<th colspan="5" class="text-right"> Total</th>
-							<td class="text-right">&#8358; {{ number_format($total = $sum + $row->addamount, 2) }}</td>
-						</tr>
+							<tr>
+								<!--<th class="text-right"> Total</th>
+								<td class="text-right">&#8358; {{ number_format($total = $sum + $others, 2) }}</td>-->
+							</tr>
+							
+							<tr>
+								<td colspan="3" rowspan="3"></td>
+								<th colspan="2" class="text-right">VAT &nbsp;</th>
+								<td class="text-right">{{ number_format($vat = $total * 0.05, 2) }}</td>
+							</tr>
 
-						<tr>
-							<th colspan="5" class="text-right">VAT</th>
-							<td class="text-right">&#8358; {{ number_format($vat = $total * 0.05, 2) }}</td>
-						</tr>
+							<tr>
+								<!--<th colspan="5" class="text-right">Net Total</th>
+								<td class="text-right"><b>&#8358; {{ number_format($net = $total + $vat, 2) }}</b></td>-->
+							</tr>
 
-						<tr>
-							<th colspan="5" class="text-right">Net Total</th>
-							<td class="text-right"><b>&#8358; {{ number_format($net = $total + $vat, 2) }}</b></td>
-						</tr>
+							<tr>
+								<td colspan="2" class="text-right">Discount &nbsp;</td>
+								<td class="text-right">{{ number_format(($discount = $net * ($row->discount / 100)), 2) }}</td>
+							</tr>
 
-						<tr>
-							<td colspan="5" class="text-right">Discount</td>
-							<td class="text-right">{{ number_format(($discount = $net * ($row->discount / 100)), 2) }}</td>
-						</tr>
+							<tr>
+								<td colspan="5" class="text-right">Gross Total &nbsp;</td>
+								<td class="text-right">{{ number_format($gross = $net - ($discount + ($row->hanger * 80)), 2) }}</td>
+							</tr>
 
-						<tr>
-							<td colspan="5" class="text-right">Gross Total</td>
-							<td class="text-right">{{ number_format($gross = $net - $discount, 2) }}</td>
-						</tr>
+							<tr>
+								<td colspan="5" class="text-right">Deposit &nbsp;</td>
+								<td class="text-right">{{ number_format($row->deposit, 2) }}</td>
+							</tr>
 
-						<tr>
-							<td colspan="5" class="text-right">Deposit</td>
-							<td class="text-right">{{ number_format($row->deposit, 2) }}</td>
-						</tr>
-
-						<tr>
-							<td colspan="5" class="text-right">Balance</td>
-							<td class="text-right"><b><i>&#8358; {{ number_format($gross - $row->deposit, 2) }}</i></b></td>
-						</tr>
+							<tr>
+								<td colspan="5" class="text-right">Balance &nbsp;</td>
+								<td class="text-right"><b><i>&#8358;{{ number_format($gross - $row->deposit, 2) }}</i></b></td>
+							</tr>
 
 						<!--<tr>
 							<td colspan="5" class="text-right">Balance</td>
@@ -140,18 +183,16 @@
 						</tr>-->
 					</table>
 
-					<p>Please kindly note that your clothes will be ready on: <b>{{ $row->collect_date }} by 6:00pm</b></p>
+					<p>Collection Date: <b>{{ $row->collect_date }} by 6:00pm</b></p>
+					
+					<p><b>{{ $row->hanger }}</b> Hanger</p>
 
-					<i>Satisfied with our services? tell others ...if not, tell us</i>
+					<i style="font-size:10.5px;">Satisfied with our services? tell others, if not, tell us</i>
 
-					<p>Thanks for your patronage, we look forward to your call again</p>
+					<p style="font-size:11px;">Thanks for your patronage, we look forward to your call again</p>
+					</div>
 
-				</div>
-			</div>
-			
-		</div>
-
-	</div>
+	
 </div>
 
 <script type="text/javascript">
@@ -167,9 +208,9 @@
 
 <style type="text/css">
 	@media print {
-  #printPageButton {
-    display: none;
-  }
-}
+		#printPageButton {
+			display: none;
+		}
+	}
 </style>
 @endsection
